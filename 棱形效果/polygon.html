@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Document</title>
+    <style>
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        ul li img {
+            width: 100%;
+        }
+        ul li{
+            clip-path: polygon(0 0, 80% 0, 100% 100%, 20% 100%);
+            margin: 0 -30px;
+        }
+        ul li:first-child{
+            clip-path: polygon(0 0, 80% 0, 100% 100%, 0 100%);
+            margin: 0 -30px;
+        }
+        ul li:last-child{
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 100%);
+            margin: 0 -30px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <img src="./pic1.jpg" alt="">
+        </li>
+
+        <li>
+            <img src="./pic2.jpg" alt="">
+        </li>
+
+        <li>
+            <img src="./pic3.jpg" alt="">
+        </li>
+
+        <li>
+            <img src="./pic4.jpg" alt="">
+        </li>
+    </ul>
+</body>
+
+</html>
