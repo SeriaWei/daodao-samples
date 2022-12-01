@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="time"></h1>
+</body>
+<script>
+    function displayTime(){
+        document.getElementById("time").innerText = new Date().toLocaleTimeString();
+    }
+    setInterval(displayTime,1000);
+</script>
+</html>

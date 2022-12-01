@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>   
+    <style>
+        .clock-panel{
+            width: 256px;
+            height: 256px;
+            background: url("./clock.jpg");
+            margin: 5em auto;
+            position: relative;
+        }
+        .pointer{
+            position: absolute;
+            border: 2px solid #000;
+            width: 35%;
+            left: 50%;
+            top: 50%;
+            transform: rotate(-90deg);
+            transform-origin: left;
+        }
+
+        #hour{
+            width: 15%;
+        }
+        #minute{
+            width: 25%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock-panel">
+        <div id="hour" class="pointer"></div>
+        <div id="minute" class="pointer"></div>
+        <div id="second" class="pointer"></div>
+    </div>
+    <script>
+        setInterval(function(){
+            var date=new Date();
+            document.getElementById("hour").style.transform="rotate("+ (360/12*date.getHours()-90) +"deg)";
+            document.getElementById("minute").style.transform="rotate("+ (360/60*date.getMinutes()-90) +"deg)";
+            document.getElementById("second").style.transform="rotate("+ (360/60*date.getSeconds()-90) +"deg)";
+        },1000);
+    </script>
+</body>
+
+</html>
