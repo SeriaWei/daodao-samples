@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body{
+            margin: 0;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            background-color: #3c3c3c;
+            display: flex;
+            justify-content: center;
+            top: 0;
+        }
+        nav a{
+            padding: 5px 10px;
+            margin:  5px;
+            color: #fff;
+            font-weight: bold;
+        }
+        .item {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10em;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <a href="#a">A</a>
+        <a href="#b">B</a>
+        <a href="#c">C</a>
+        <a href="#d">D</a>
+    </nav>
+    <div class="container">
+        <div class="item" id="a" style="background-color: #def3f6;">A</div>
+        <div class="item" id="b" style="background-color: #a5dcf0;">B</div>
+        <div class="item" id="c" style="background-color: #f2aaab;">C</div>
+        <div class="item" id="d" style="background-color: #e36386;">D</div>
+    </div>
+</body>
+
+</html>
