@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="btn_start">开始录屏</button>
+    <button id="btn_stop">停止录屏</button>
+</body>
+<script>
+    var recoder;
+    document.getElementById("btn_start").addEventListener("click", async () => {
+        var videoStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        var audioStream = await navigator.mediaDevices.getUserMedia({audio:true});
+        var tracks=[];
+        videoStream.getVideoTracks().forEach(t=>tracks.push(t));
+        audioStream.getAudioTracks().forEach(t=>tracks.push(t));
+        var stream = new MediaStream(tracks);
+        recoder = new MediaRecorder(stream);
+        var data = [];
+        recoder.ondataavailable = function (e) {
+            data.push(e.data);
+        }
+        recoder.onstop = function () {
+            this.stream.getTracks().forEach(track => track.stop());
+
+            var blob = new Blob(data, { type: this.mimeType });
+            var link = document.createElement("a");
+            link.href = URL.createObjectURL(blob);
+            link.download = new Date().getTime() + ".webm";
+            document.body.appendChild(link);
+            link.click();
+            URL.revokeObjectURL(link.href);
+            link.remove();
+        }
+        recoder.start();
+    })
+    document.getElementById("btn_stop").addEventListener("click", function () {
+        recoder.stop();
+    })
+</script>
+
+</html>
