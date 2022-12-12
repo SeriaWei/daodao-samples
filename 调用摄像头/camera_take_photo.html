@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video width="640" height="480" autoplay id="video"></video>
+    <button id="btn_start">Start</button>
+    <button id="btn_take_photo">拍照</button>
+</body>
+<script>
+    document.getElementById("btn_start").addEventListener("click", function () {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            document.getElementById("video").srcObject = stream;
+        });
+    });
+    document.getElementById("btn_take_photo").addEventListener("click", function () {
+        var canvas = document.createElement("canvas");
+        canvas.width = 640;
+        canvas.height = 480;
+        var video = document.getElementById("video");
+        canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
+        document.body.appendChild(canvas);
+    });
+</script>
+
+</html>

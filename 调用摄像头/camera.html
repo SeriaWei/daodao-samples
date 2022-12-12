@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video width="640" height="480" autoplay id="video"></video>
+    <button id="btn_start">Start</button>
+</body>
+<script>
+    document.getElementById("btn_start").addEventListener("click", function () {
+        navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+            document.getElementById("video").srcObject = stream;
+        });
+    });
+</script>
+
+</html>
