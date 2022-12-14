@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video width="640" height="480" autoplay muted id="video"></video>
+    <button id="btn_start">Start</button>
+    <button id="btn_stop">Stop</button>
+</body>
+<script>
+    var videoData = [];
+    var recorder;
+    document.getElementById("btn_start").addEventListener("click", function () {
+        navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(stream => {
+            document.getElementById("video").srcObject = stream;
+
+            recorder = new MediaRecorder(stream);
+            recorder.ondataavailable = function (e) {
+                videoData.push(e.data);
+            }
+            recorder.onstop = function () {
+                this.stream.getTracks().forEach(track => track.stop());
+                var blob = new Blob(videoData, { type: this.mimeType });
+
+                var link = document.createElement("a");
+                link.href = URL.createObjectURL(blob);
+                link.download = new Date().getTime() + ".webm";
+                document.body.appendChild(link);
+                link.click();
+                URL.revokeObjectURL(link.href);
+                link.remove();
+            }
+            recorder.start();
+        });
+    });
+    document.getElementById("btn_stop").addEventListener("click", function () {
+        recorder.stop();
+        videoData = [];
+    });
+</script>
+
+</html>
