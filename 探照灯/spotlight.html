@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body,html{
+      background-color: #3c3c3c;
+      text-align: center;
+    }
+    .spotlight {
+      position: relative;
+      display: inline-block;
+      color: transparent;
+      font-size: 48px;
+    }
+
+    .spotlight::after {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      content: attr(title);
+      left: 0;
+      top: 0;
+      color: #fff;
+      animation: spotlight 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes spotlight {
+      0%{
+        clip-path: ellipse(32px 32px at 0% 50%);
+      }
+      100%{
+        clip-path: ellipse(32px 32px at 100% 50%);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="spotlight" title="Hello World">
+    Hello World 
+  </h1>
+</body>
+
+</html>
